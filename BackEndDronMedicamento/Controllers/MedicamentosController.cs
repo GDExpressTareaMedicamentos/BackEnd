@@ -83,21 +83,14 @@ namespace BackEndDronMedicamento.Controllers
             Regex regexNombre = new Regex("^[a-zA-Z0-9_-]+$");
             Regex regexCodigo = new Regex("^[A-Z0-9_]+$");
             
-            if (regexNombre.IsMatch(medicamento.Nombre))
+            if (!regexNombre.IsMatch(medicamento.Nombre))            
             {
-                Ok("Correcto");
+                return BadRequest("El nombre solo puede contener letras, numeros, guion y guion bajo");
             }
-            else
+
+            if (!regexCodigo.IsMatch(medicamento.Codigo))            
             {
-                return NotFound("El nombre solo puede contener letras, numeros, guion y guion bajo");
-            }
-            if (regexCodigo.IsMatch(medicamento.Codigo))
-            {
-                Ok("Correcto");
-            }
-            else
-            {
-                return NotFound("El codigo solo puede contener Mayusculas, numeros y guion bajo.");
+                return BadRequest("El codigo solo puede contener Mayusculas, numeros y guion bajo.");
             }
 
 

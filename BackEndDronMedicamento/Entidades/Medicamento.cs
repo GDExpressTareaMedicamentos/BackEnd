@@ -4,8 +4,6 @@ namespace BackEndDronMedicamento.Entidades
 {
     public class Medicamento
     {
-        // (permitido solo letras, números, ‘-‘, ‘_’);
-        [RegularExpression(@"/^[A-Za-z0-9_-]+$/", ErrorMessage = "permitido solo letras, números, ‘-‘, ‘_’")]
         [Required]
         public string Nombre { get; set; }
         [Required]

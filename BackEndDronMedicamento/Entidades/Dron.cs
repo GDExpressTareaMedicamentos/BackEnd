@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BackEndDronMedicamento.Entidades
 {
     public class Dron
-    {        
-        [StringLength(maximumLength: 100)]
+    {
         [Key]
         public string NumeroSerie { get; set; }
         public string Modelo { get; set; }
