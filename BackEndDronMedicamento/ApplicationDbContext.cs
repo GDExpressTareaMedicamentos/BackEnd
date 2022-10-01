@@ -5,13 +5,12 @@ namespace BackEndDronMedicamento
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
 
-        public DbSet<Medicamento> Medicamento { get; set; }
-        public DbSet<Dron> Dron { get; set; }
-        public DbSet<DronMedicamento> DronMedicamento { get; set; }
+        public DbSet<Medicamento> Medicamentos { get; set; }
+        public DbSet<Dron> Drones { get; set; }
+        public DbSet<DronMedicamento> DronMedicamentos { get; set; }
     }
 }
