@@ -29,6 +29,14 @@ namespace BackEndDronMedicamento.Controllers
             return await _context.Drones.ToListAsync();
         }
 
+        // GET: api/Drons
+        [HttpGet]
+        [Route("api/GetDronesDisponiblesParaCarga")]
+        public async Task<ActionResult<IEnumerable<Dron>>> GetDronesDisponiblesParaCarga()
+        {
+            return await _context.Drones.Where(dr => dr.Estado == "INACTIVO").ToListAsync();
+        }
+
         // GET: api/Drons/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Dron>> GetDron(string id)

@@ -48,14 +48,13 @@ namespace BackEndDronMedicamento.Migrations
 
             modelBuilder.Entity("BackEndDronMedicamento.Entidades.DronMedicamento", b =>
                 {
-                    b.Property<string>("CodigoDron")
+                    b.Property<string>("CodigoMedicamento")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CodigoMedicamento")
-                        .IsRequired()
+                    b.Property<string>("CodigoDron")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CodigoDron");
+                    b.HasKey("CodigoMedicamento");
 
                     b.ToTable("DronMedicamentos");
                 });

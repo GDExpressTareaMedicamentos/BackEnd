@@ -89,14 +89,14 @@ namespace BackEndDronMedicamento.Controllers
             if (medicamento == null)
                 return BadRequest("El medicamento buscado no existe");
 
-            if(dron.Estado == "INACTIVO" ||
-                dron.Estado == "CARGADO" ||
-                dron.Estado == "ENTREGANDO CARGA")
+            if(dron.Estado == "CARGADO" ||
+                dron.Estado == "ENTREGANDO CARGA" ||
+                dron.Estado == "CARGA ENTREGADA" ||
+                dron.Estado == "REGRESANDO")
                 return BadRequest("El estado del Dron impide su utilización.");
 
             //Listado de medicamentos en la carga del drom
-            var medicamentosDronList = await _context.DronMedicamentos.Where(dm => dm.CodigoDron == dronMedicamento.CodigoMedicamento
-                && dm.CodigoDron == dron.NumeroSerie).ToListAsync();
+            var medicamentosDronList = await _context.DronMedicamentos.Where(dm => dm.CodigoDron == dron.NumeroSerie).ToListAsync();
             
             var totalPeso = 0;
             foreach (DronMedicamento dm in medicamentosDronList)
@@ -106,9 +106,14 @@ namespace BackEndDronMedicamento.Controllers
                     totalPeso += medUtilizado.Peso;
             }
 
-
-            if (totalPeso > 500)
-                return BadRequest("Se ha sebrepasado el peso máximo del Dron: 500gr");
+            //Se suma el peso del nuevo medicamento y se evalúa.
+            totalPeso += medicamento.Peso;
+            if (totalPeso > dron.PesoLimite)
+                return BadRequest($"Se ha sebrepasado el peso máximo del Dron: {dron.PesoLimite}gr");
+            
+            //Dron pasa a estado CARGANDO
+            if(dron.Estado.ToUpper() != "CARGANDO")
+                dron.Estado = "CARGANDO,";
 
 
             _context.DronMedicamentos.Add(dronMedicamento);

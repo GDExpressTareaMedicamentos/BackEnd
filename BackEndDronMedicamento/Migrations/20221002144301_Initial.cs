@@ -27,12 +27,12 @@ namespace BackEndDronMedicamento.Migrations
                 name: "DronMedicamentos",
                 columns: table => new
                 {
-                    CodigoDron = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CodigoMedicamento = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CodigoMedicamento = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CodigoDron = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DronMedicamentos", x => x.CodigoDron);
+                    table.PrimaryKey("PK_DronMedicamentos", x => x.CodigoMedicamento);
                 });
 
             migrationBuilder.CreateTable(

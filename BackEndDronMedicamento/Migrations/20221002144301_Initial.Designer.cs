@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndDronMedicamento.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221001145259_Initial")]
+    [Migration("20221002144301_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,14 +50,13 @@ namespace BackEndDronMedicamento.Migrations
 
             modelBuilder.Entity("BackEndDronMedicamento.Entidades.DronMedicamento", b =>
                 {
-                    b.Property<string>("CodigoDron")
+                    b.Property<string>("CodigoMedicamento")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CodigoMedicamento")
-                        .IsRequired()
+                    b.Property<string>("CodigoDron")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CodigoDron");
+                    b.HasKey("CodigoMedicamento");
 
                     b.ToTable("DronMedicamentos");
                 });

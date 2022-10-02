@@ -5,7 +5,8 @@ namespace BackEndDronMedicamento.Entidades
 {
     public class Dron
     {
-        [Key]
+        [Key]        
+        [StringLength(maximumLength: 100)]
         public string NumeroSerie { get; set; }
         public string Modelo { get; set; }
         [Required]
